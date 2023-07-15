@@ -1,0 +1,7 @@
+                        t     a    at   ask  ars  arst  arsb  arsbt   st  stx
+0  Elmo de Presagélida α+  1546  1546  1546  331   331    65     65  128  128
+1  Elmo de Presagélida α+  1546  1546  1546  331   331    65     65  150  150
+2  Elmo de Presagélida α+  1546  1546  1546  331   331    65     65  128  128
+3  Elmo de Presagélida α+  1546  1546  1546  331   331    65     65  150  150
+4  Elmo de Presagélida β+  1551  1551  1551  332   332    65     65  128  128
+5  Elmo de Presagélida β+  1551  1551  1551  332   332    65     65  150  150
