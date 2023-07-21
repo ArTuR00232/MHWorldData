@@ -1,5 +1,0 @@
-result                                         Megapoção
-item1                                              Poção
-item2                                                Mel
-description    Recupera uma quantidade razoável de vida.
-Name: 0, dtype: object

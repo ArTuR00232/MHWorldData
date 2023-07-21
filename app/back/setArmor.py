@@ -1,6 +1,6 @@
 #future work make an new table to user crate and save the presets 
 import sqlite3
-
+import Armor
 
 #connection with the data base
 conn = sqlite3.connect("mhw.db")
@@ -19,37 +19,37 @@ class setArmor:
 
     #section to adding each part of the set
     def setHead(self, head):
-        if(head[1] == 'head'):
-            self.head = head[0]
+        if(head['armor_type'].values == 'head'):
+            self.head = head
         else:
             print('nn')
     def setChest(self, chest):
-        if(chest[1] == 'chest'):
+        if(chest['armor_type'].values == 'chest'):
             self.chest = chest
         else:
             print('nn')
     def setArms(self, arms):
-        if(arms[1] == 'arms'):        
+        if(arms['armor_type'].values == 'arms'):        
             self.arms = arms
         else:
             print('nn')
     def setWaist(self, waist):
-        if(waist[1] == 'waist'):            
+        if(waist['armor_type'].values == 'waist'):            
             self.waist = waist
         else:   
             print('nn')
     def setLegs(self, legs):
-        if(legs[1] == 'legs'):        
+        if(legs['armor_type'].values == 'legs'):        
             self.legs = legs
         else:
             print('nn')   
     def setWeapon(self, weapon):
-        if(weapon[1] == 'weapon'):           
+        if(weapon['armor_type'].values == 'weapon'):           
             self.weapon = weapon
         else:
             print('nn')
     def setCharm(self, charm):
-        if(charm[1] == 'charm'):
+        if(charm['armor_type'].values == 'charm'):
             self.charm = charm
         else:
             print('nn')    
