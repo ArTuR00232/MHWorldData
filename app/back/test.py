@@ -1,24 +1,17 @@
 import sys
 sys.path.append('./app/front/')
-import Buttons as m
-from pprint import pprint
-
-m.testa()
+#flask to api, front react and electron to .exe
+from flask import Flask, render_template
 
 
+app = Flask(__name__, template_folder = '../front')
 
-#connection with the data base
 
 
-# print(quest)
-# x=0
-# for index, row in quest.iterrows():
-#     while x < 1:
-#         with open ('./app/back/text.txt', 'w') as file:
-#             file.write(str(row))
-#         x=x+1
+@app.route('/')
+def home():
+    #return 'oi'
+    return render_template('index.html')
 
-    
-
-# quests('pt')
-# conn.close()
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -35,6 +35,6 @@ def quests(lang, monster = '', rank = '', type = '', item = ''):
 
     
 
-p = quests('pt')
-print(p)
+# p = quests('pt')
+# print(p)
 conn.close()

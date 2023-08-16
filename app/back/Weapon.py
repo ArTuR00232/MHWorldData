@@ -5,7 +5,7 @@ import sqlite3
 #connection with the data base
 conn = sqlite3.connect("mhw.db")
 
-def weaponName(lang, name = '', type = ''):
+def weapon(lang, name = '', type = ''):
     weapon = pd.read_sql_query("SELECT weapon.id, weapon_text.name ,attack, attack_true, element1, element1_attack, element2, element2_attack, weapon_type FROM weapon\
                                JOIN weapon_text ON weapon.id = weapon_text.id\
                                WHERE weapon_text.lang_id = '{}'\
