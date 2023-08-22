@@ -1,8 +1,0 @@
-id                           101
-name                      Jagras
-rank                          LR
-stars                          1
-quest_type                  hunt
-zenny                        720
-item_name     Esfera de Armadura
-Name: 0, dtype: object

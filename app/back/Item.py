@@ -1,10 +1,10 @@
-#connection with the data base
-conn = sqlite3.connect("mhw.db")
 
 #quest by monster/rank/type
 import pandas as pd
 import sqlite3
 
+#connection with the data base
+conn = sqlite3.connect("mhw.db")
 #connection with the data base
 conn = sqlite3.connect("mhw.db")
 
