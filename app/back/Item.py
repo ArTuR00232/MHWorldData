@@ -1,27 +1,35 @@
 
-#quest by monster/rank/type
-import pandas as pd
-import sqlite3
+from flask import request, jsonify
+from conn import db_connection
 
-#connection with the data base
-conn = sqlite3.connect("mhw.db")
-#connection with the data base
-conn = sqlite3.connect("mhw.db")
+#subcategory?
 
 #serch by name, category
-def item(lang, name = '', category = ''):
-    item = pd.read_sql_query("SELECT it.name AS result, it2.name AS item1,it3.name AS item2, it.description FROM item_combination AS ic\
-                                 JOIN item AS i ON i.id = ic.result_id\
-                                 JOIN item AS i1 ON i1.id = ic.first_id \
-                                 JOIN item AS i2 ON i2.id = ic.second_id\
-                                 JOIN item_text AS it ON it.id = ic.result_id\
-                                 JOIN item_text AS it2 ON i1.id = it2.id\
-                                 JOIN item_text AS it3 ON i2.id = it3.id\
-                                 WHERE it.lang_id = '{}'\
-                                 AND it2.lang_id = '{}'\
-                                 AND it3.lang_id = '{}'\
-                                 AND i.category LIKE '%{}%'\
-                                 ".format(lang, lang, lang, category),conn)
-    
+def get_item(lg ='en', cty = ''):
+    lang = request.args.get('lang',lg)
+    #subcategory = request.args.get('subcategory',scty)
+    category = request.args.get('category',cty)
 
-conn.close()
+    conn = db_connection()
+    cursor = conn.cursor()
+
+    query = "SELECT i.id, ittx.name, i.category, i.subcategory,i.sell_price, ittx.description FROM item AS i\
+                                 JOIN item_text AS ittx ON i.id = ittx.id\
+                                 WHERE ittx.lang_id = ?\
+                                 AND i.category LIKE ?\
+                                 "
+    cursor.execute(query,(lang, f'%{category}%'))
+    item_data = cursor.fetchall()
+
+    item_list = [
+            {
+                "ID":row[0],
+                "Name":row[1],
+                "category":row[2],
+                "subcategory":row[3],
+                "sell_price":row[4],
+                "Description":row[5]
+            }
+            for row in item_data
+        ]
+    return jsonify(item_list)

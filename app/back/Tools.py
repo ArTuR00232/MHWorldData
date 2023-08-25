@@ -1,26 +1,37 @@
-import pandas as pd
-import sqlite3
-
-#connection with the data base
-conn = sqlite3.connect("mhw.db")
+from flask import request, jsonify
+from conn import db_connection
 
 
 
 #search by name and/or type
-def tool(lang,name = '', type = ''):
-    tool = pd.read_sql_query("SELECT t.id, tool_type, name, slot_1, slot_2, slot_3 FROM tool AS t \
+def get_tool(lg = 'en',nm = '', ty = ''):
+    lang = request.args.get('lang',lg)
+    name = request.args.get('name',nm)
+    tool_type = request.args.get('tool_type',ty)
+
+    conn = db_connection()
+    cursor = conn.cursor()
+
+    query = "SELECT t.id, name, tool_type, slot_1, slot_2, slot_3 FROM tool AS t \
                               JOIN tool_text AS ttx ON t.id = ttx.id \
-                              WHERE ttx.lang_id == '{}'\
-                              AND ttx.name LIKE '%{}%'\
-                              AND t.tool_type LIKE '%{}%'".format(lang,name, type), conn)
-    # for index,row in tool.iterrows():
-    #     print("ID:", row['id'])
-    #     print("Name:", row['name'])
-    #     print("Tool Type:", row['tool_type'])
-    #     print("Slot1:", row['slot_1'])
-    #     print("Slot2:", row['slot_2'])
-    #     print("Slot3:", row['slot_3'])
-    #     print("-------------------")
+                              WHERE ttx.lang_id = ?\
+                              AND ttx.name LIKE ?\
+                              AND t.tool_type LIKE ?"
 
+    cursor.execute(query,(lang,f'%{name}%', f'%{tool_type}%'))
+    
+    tool_data = cursor.fetchall()
 
-conn.close()
+    tool_list = [
+        {
+            "ID:": row[0],
+            "Name:": row[1],
+            "Tool Type:": row[2],
+            "Slot1:": row[3],
+            "Slot2:": row[4],
+            "Slot3:": row[5]
+        }
+        for row in tool_data
+    ]
+
+    return jsonify(tool_list)

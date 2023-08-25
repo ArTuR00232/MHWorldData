@@ -3,7 +3,7 @@ import sys
 sys.path.append('./app/front/')
 #flask to api, front react and electron to .exe
 from flask import Flask, jsonify
-import Armor, Monsters , Quests, Tools, Item, Kinsect, Weapon,setArmor
+import Armor, Monsters , Quests, Tools, ItemCombination, Item, Kinsect, Weapon,setArmor, CharmDecoration
 
 app = Flask(__name__)
 #app = Flask(__name__, template_folder = '../front')
@@ -14,40 +14,53 @@ def get_armor():
     result = Armor.get_armor()
     return (result)
 
-# @app.route('/api/Monster', mothods = ['GET'])
-# def getMonster(lang, name = '', size = ''):
-#     result = Monsters.monster(lang, name = '', size = '')
-#     return jsonify(result)
+@app.route('/api/monster', methods = ['GET'])
+def get_Monster():
+    result = Monsters.get_monster()
+    return (result)
 
-# @app.route('/api/Quest', mothods = ['GET'])
-# def getQuest(lang, monster = '', rank = '', type = '', item = ''):
-#     result = Quests.quests(lang, monster = '', rank = '', type = '', item = '')
-#     return jsonify(result)
+@app.route('/api/quest', methods = ['GET'])
+def get_Quest():
+    result = Quests.get_quests()
+    return (result)
 
-# @app.route('/api/Tool', mothods = ['GET'])
-# def getTools(lang,name = '', type = ''):
-#     result = Tools.tool(lang,name = '', type = '')
-#     return jsonify(result)
+@app.route('/api/tool', methods = ['GET'])
+def get_Tools():
+    result = Tools.get_tool()
+    return (result)
 
-# @app.route('/api/Item', mothods = ['GET'])
-# def getItem(lang, name = '', category = ''):
-#     result = Item.item(lang, name = '', category = '')
-#     return jsonify(result)
 
-# @app.route('/api/Kinsect', mothods = ['GET'])
-# def getKinsect(lang, name = '', attack = '', dust = ''):
-#     result = Kinsect.kinsect(lang, name = '', attack = '', dust = '')
-#     return jsonify(result)
+@app.route('/api/item', methods = ['GET'])
+def get_Item():
+    result = Item.get_item()
+    return (result)
 
-# @app.route('/api/Weapon', mothods = ['GET'])
-# def getWeapon(lang, name = '', attack = '', dust = ''):
-#     result = Weapon.weapon(lang, name = '', attack = '', dust = '')
-#     return jsonify(result)
+@app.route('/api/item_combination', methods = ['GET'])
+def get_ItemCombination():
+    result = ItemCombination.get_itemcombination()
+    return (result)
 
-# @app.route('/')
-# def home():
-#     return 'oi'
-#     return render_template('index.html')
+@app.route('/api/kinsect', methods = ['GET'])
+def get_Kinsect():
+    result = Kinsect.get_kinsect()
+    return(result)
+
+@app.route('/api/weapon', methods = ['GET'])
+def get_Weapon():
+    result = Weapon.get_weapon()
+    return (result)
+
+@app.route('/api/charm', methods = ['GET'])
+def get_Charm():
+    result = CharmDecoration.get_charm()
+    return (result)
+
+@app.route('/api/decoration', methods = ['GET'])
+def get_decoration():
+    result = CharmDecoration.get_Decoration()
+    return(result)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
