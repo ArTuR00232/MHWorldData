@@ -6,15 +6,16 @@ const Test = (e) => {
 
   useEffect(() => {
     // Make an API request to the Flask backend
-    fetch('/api/Armor')
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching data:', error));
+    fetch('/api/armor')
+    .then(response => response.json())
+    .then(data => setData(data))
+    .catch(error => console.error('Error fetching data:', error));
+    console.log(data)
   }, []);
 
   return (
     <div>
-      <h1>{data.name}</h1>
+      <h1>name:{data.name}</h1>
       <p>Age: {data.age}</p>
       <p>City: {data.city}</p>
     </div>

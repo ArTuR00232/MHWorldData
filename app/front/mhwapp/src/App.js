@@ -1,5 +1,6 @@
 import './App.css';
 import OnHanddlemh from './components/mhw';
+import Test from './components/test';
 
 
 function App() {

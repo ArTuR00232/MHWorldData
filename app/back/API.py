@@ -2,11 +2,11 @@ import sys
 
 sys.path.append('./app/front/')
 #flask to api, front react and electron to .exe
-from flask import Flask, jsonify
+from flask import Flask, render_template
 import Armor, Monsters , Quests, Tools, ItemCombination, Item, Kinsect, Weapon,setArmor, CharmDecoration
 
-app = Flask(__name__)
-#app = Flask(__name__, template_folder = '../front')
+app = Flask(__name__, template_folder = '../front/mhwapp/src', static_url_path=('/'))
+#app = Flask(__name__, template_folder = '../fron/')
 
 
 @app.route('/api/armor', methods = ['GET'])
@@ -61,6 +61,9 @@ def get_decoration():
     return(result)
 
 
+@app.route('/')
+def home():
+    return render_template('index.js')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -38,3 +38,5 @@ def get_armor(lg = 'en',nm = '',ty = ''):
     ]
 
     return jsonify(armor_list)
+
+
